@@ -4,20 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b9579ad-0f06-446f-9d0a-c6bf6b4813b4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Controlador.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ejecutor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modelos/Factura.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modelos/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/Funciones.py" beforeDir="false" />
+    <list default="true" id="0b9579ad-0f06-446f-9d0a-c6bf6b4813b4" name="Changes" comment="haciendo pruebas en todo ya actualizado">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/funciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/funciones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conexiones/EnviarCorreo.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexiones/EnviarCorreo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/Controlador.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/DocumentoSoporte.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Factura.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/NotaAjuste.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/NotaContabilidad.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/NotaDebito.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/controlador.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/controlador.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/documentoSoporte.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/documento_soporte.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/documento_soporte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/factura.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/factura.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/nota_ajuste.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/nota_ajuste.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/nota_credito.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/nota_credito.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/nota_debito.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/nota_debito.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +27,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/common/funciones.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/conexiones/ConexionDB.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/conexiones/EnviarCorreo.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/config/config.ini" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/controllers/controlador.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/main.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/models/Reg.py" root0="SKIP_INSPECTION" />
@@ -53,7 +54,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Color Scheme Font&quot;
   }
 }</component>
   <component name="RunManager" selected="Python.main">
@@ -115,6 +116,21 @@
       <option name="presentableId" value="Default" />
       <updated>1669327632984</updated>
     </task>
+    <task id="LOCAL-00001" summary="haciendo pruebas en todo ya actualizado">
+      <created>1672231856347</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672231856347</updated>
+    </task>
+    <task id="LOCAL-00002" summary="haciendo pruebas en todo ya actualizado">
+      <created>1672231885158</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672231885158</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,6 +143,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="haciendo pruebas en todo ya actualizado" />
+    <option name="LAST_COMMIT_MESSAGE" value="haciendo pruebas en todo ya actualizado" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
