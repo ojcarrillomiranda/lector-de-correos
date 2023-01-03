@@ -17,10 +17,8 @@ import email
 from email.MIMEText import MIMEText
 from models.reg import reg
 
-# fecha actual
 datenow = datetime.datetime.now()
 hournow = str(datenow.hour) + ":" + str(datenow.minute) + ":" + str(datenow.second)
-
 
 Emp = ""
 ano = 0
@@ -80,10 +78,6 @@ class DocumentoSoporte:
             print (mensaje)
             mensaje = "\033[93m*********************************************** Proceso Finalizado " + cambio.upper() + " ***********************************************\033[0m\n\n"
             print (mensaje)
-
-
-
-
 
     def get_datos_doc_soporte(self, cursor, empresa_codigo, documento_soporte, cencos_documento, empresa):
         global ruta_servidor, digitalizado_ruta, codigo_docsop, cencos_docsop, fecha_docsop, ano, mes, dia, docsopSubj

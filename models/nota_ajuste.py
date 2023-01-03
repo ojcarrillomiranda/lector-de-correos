@@ -17,30 +17,9 @@ import email
 from email.MIMEText import MIMEText
 
 Emp = ""
-# emailFrom = "doc_soporte@mct.com.co"
-emailFrom = "orlin.carrillo@mct.com.co"
-counter = 0
-counteraux = 1
-imgType = 0
-usuario_codigo = 0
-detach_dir = '.'
-detach_dir1 = '.'
-dicReverseCC = {}
-filename = None
-outfile = None
 ano = 0
 mes = 0
 dia = 0
-empresaCodCont = {
-  "MCT": "01",
-  "FERRICAR": "13",
-  "MARKETING": "02"
-}
-empresaCodGeneral = {
-  "MCT": "1",
-  "FERRICAR": "12",
-  "MARKETING": "2"
-}
 
 parser = HTMLParser.HTMLParser()
 datenow = datetime.datetime.now()
