@@ -34,8 +34,8 @@ config.read('config/config.ini')
 correo = config.get('conf','CORREO_O')
 password =  config.get('conf','PASS')
 carpeta = config.get('conf','IMAP_DS')
-cargue_string = config.get('conf','CARGUE_DOC_SOPORTE')
-error_string = config.get('conf','ERROR_DOC_SOPORTE')
+cargue_string = config.get('correo_confirmacion','CARGUE_DOC_SOPORTE')
+error_string = config.get('correo_error','ERROR_DOC_SOPORTE')
 
 class DocumentoSoporte:
 

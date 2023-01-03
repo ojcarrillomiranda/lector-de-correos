@@ -31,8 +31,8 @@ config.read('config/config.ini')
 correo = config.get('conf','CORREO_O')
 password =  config.get('conf','PASS')
 carpeta = config.get('conf','IMAP_FAC')
-cargue_string = config.get('conf','CARGUE_FACTURA')
-error_string = config.get('conf','ERROR_FACTURA')
+cargue_string = config.get('correo_confirmacion','CARGUE_FACTURA')
+error_string = config.get('correo_error','ERROR_FACTURA')
 
 
 class Factura:

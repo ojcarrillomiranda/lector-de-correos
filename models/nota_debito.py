@@ -51,8 +51,8 @@ config.read('config/config.ini')
 correo = config.get('conf','CORREO_O')
 password =  config.get('conf','PASS')
 carpeta = config.get('conf','IMAP_ND')
-cargue_string = config.get('conf','CARGUE_NOTA_DEBITO')
-error_string = config.get('conf','ERROR_NOTA_DEBITO')
+cargue_string = config.get('correo_confirmacion','CARGUE_NOTA_DEBITO')
+error_string = config.get('correo_error','ERROR_NOTA_DEBITO')
 
 class NotaDebito:
     def leer_correos_nota_debito(self, con, env):

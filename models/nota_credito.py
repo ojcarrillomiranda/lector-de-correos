@@ -30,8 +30,8 @@ config.read('config/config.ini')
 correo = config.get('conf','CORREO_O')
 password =  config.get('conf','PASS')
 carpeta = config.get('conf','IMAP_NC')
-cargue_string = config.get('conf','CARGUE_NOTA_CREDITO')
-error_string = config.get('conf','ERROR_NOTA_CREDITO')
+cargue_string = config.get('correo_confirmacion','CARGUE_NOTA_CREDITO')
+error_string = config.get('correo_error','ERROR_NOTA_CREDITO')
 
 
 class NotaCredito:
