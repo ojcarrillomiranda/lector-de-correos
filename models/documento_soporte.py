@@ -1,20 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-from configparser import ConfigParser
-import imaplib, email
-from email.header import decode_header
-import os
-import psycopg2
-import psycopg2.extras
-import psycopg2.extensions
-
-from common.funciones import Funcion
-psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
 import datetime, re
-import email
-from email.mime.text import MIMEText
+from configparser import ConfigParser
 from models.reg import reg
+from common.funciones import Funcion
 
 datenow = datetime.datetime.now()
 hournow = str(datenow.hour) + ":" + str(datenow.minute) + ":" + str(datenow.second)

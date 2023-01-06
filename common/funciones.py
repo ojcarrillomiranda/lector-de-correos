@@ -3,17 +3,10 @@
 import email
 import imaplib
 import os
-from email.header import decode_header
-import psycopg2
-import psycopg2.extensions
-import psycopg2.extras
-psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
 import datetime
-import email
 import re
+from email.header import decode_header
 from configparser import ConfigParser
-from email.mime.text import MIMEText
 
 from models.reg import reg
 

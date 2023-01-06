@@ -1,17 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import imaplib, email
-from email.header import decode_header
-import os
-import psycopg2
-import psycopg2.extras
-import psycopg2.extensions
-psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
 import datetime, re
 from configparser import ConfigParser
-import email
-from email.mime.text import MIMEText
 from models.reg import reg
 from common.funciones import Funcion
 

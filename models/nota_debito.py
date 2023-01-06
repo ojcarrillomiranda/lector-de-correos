@@ -1,27 +1,9 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-from configparser import ConfigParser
-import imaplib, email, base64
-from email.header import decode_header
-import smtplib
-from common.funciones import Funcion
-from conexiones.EnviarCorreo import EnviarCorreo
-import os, sys
-import psycopg2
-import psycopg2.extras
-import psycopg2.extensions
-
-from conexiones.ConexionDB import Conexion
-from models.reg import reg
-psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
-import time, math, array
-from glob import glob
 import datetime, re
-
-from smtplib import SMTP  # this invokes the secure SMTP protocol (port 465, uses SSL)
-import email
-from email.mime.text import MIMEText
+from configparser import ConfigParser
+from models.reg import reg
+from common.funciones import Funcion
 
 # Fecha y hora actual
 dateNow = datetime.datetime.now()

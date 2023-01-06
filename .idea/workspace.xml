@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b9579ad-0f06-446f-9d0a-c6bf6b4813b4" name="Changes" comment="ultimo">
-      <change beforePath="$PROJECT_DIR$/.idea/LectorCorreosPython.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LectorCorreosPython.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0b9579ad-0f06-446f-9d0a-c6bf6b4813b4" name="Changes" comment="cambio config.ini">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/funciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/funciones.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conexiones/ConexionDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexiones/ConexionDB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conexiones/EnviarCorreo.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexiones/EnviarCorreo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/documento_soporte.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/documento_soporte.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/factura.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/factura.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/nota_ajuste.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/nota_ajuste.py" afterDir="false" />
@@ -195,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673022200358</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="cambio config.ini">
+      <created>1673041404885</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673041404885</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -215,7 +217,8 @@
     <MESSAGE value="ajustes" />
     <MESSAGE value=".ini" />
     <MESSAGE value="ultimo" />
-    <option name="LAST_COMMIT_MESSAGE" value="ultimo" />
+    <MESSAGE value="cambio config.ini" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambio config.ini" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
