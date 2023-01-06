@@ -1,5 +1,3 @@
-from configparser import ConfigParser
-from common.funciones import Funcion
 from conexiones.ConexionDB import Conexion
 from conexiones.EnviarCorreo import EnviarCorreo
 from models.documento_soporte import DocumentoSoporte

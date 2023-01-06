@@ -155,8 +155,8 @@ class Funcion:
         digitalizado_archivo = ""
         existeDigitalizado = False
         try:
-            print "\033[93m######################### SQL VALIDACION SI EXISTE EN TB_DIGITALIZADO #################################\033[0m"
-            print "\033[93m" + sql_digitalizado + "\033[0m"
+            print("\033[93m######################### SQL VALIDACION SI EXISTE EN TB_DIGITALIZADO #################################\033[0m")
+            print("\033[93m" + sql_digitalizado + "\033[0m")
             self.cursor.execute(sql_digitalizado)
             for row in  self.cursor.fetchall():
                 r = reg(self.cursor, row)
@@ -165,9 +165,9 @@ class Funcion:
             existeDigitalizado = (".zip" in digitalizado_archivo)
             if(existeDigitalizado):
                 msg = "El documento: " +str(digitalizado_documento)+ ", ya cuenta con archivo .zip"
-                print "\033[94m######################### RESULTADO SQL VALIDACION SI EXISTE EN TB_DIGITALIZADO  #################################\033[0m\n" + "\033[94mdigitalizado_documento = " + str(
+                print("\033[94m######################### RESULTADO SQL VALIDACION SI EXISTE EN TB_DIGITALIZADO  #################################\033[0m\n" + "\033[94mdigitalizado_documento = " + str(
                     digitalizado_documento) + "\n" + "digitalizado_archivo = " + str(
-                    digitalizado_archivo) + "\033[0m"
+                    digitalizado_archivo) + "\033[0m")
                 print("\033[91m" + msg + "\033[0m")
                 self.enviar.correo_error(documento, filename, msg, cargue_string, error_string, email_from, email_message["Subject"])
                 return
@@ -175,10 +175,10 @@ class Funcion:
             print (e.pgerror)
             return False
         outfile = 'Min_' + str(filename)
-        print "\033[94m######################### RESULTADO SQL VALIDACION SI EXISTE EN TB_DIGITALIZADO  #################################\033[0m"
+        print("\033[94m######################### RESULTADO SQL VALIDACION SI EXISTE EN TB_DIGITALIZADO  #################################\033[0m")
         print("\033[94mdigitalizado_documento: "+str(documento)+"\033[0m")
         print("\033[94mdigitalizado_archivo: " + str(filename) + "\033[0m")
-        print "\033[91mEl digitalizado documento y el Archivo zip no existen en DB, se procede a guardarlos en DB\033[0m\n"
+        print("\033[91mEl digitalizado documento y el Archivo zip no existen en DB, se procede a guardarlos en DB\033[0m\n")
         # download the attachments from email to the designated directory
         # att_path = os.path.join(detach_dir, filename)
         # minfile = os.path.join(detach_dir, outfile)
@@ -207,8 +207,8 @@ class Funcion:
                 "VALUES "
                 "(" + str(modulo) + ",'" + str(documento) + "'," + str(imagdoc_codigo) + ",'" + filename + "','" + str(ruta) + "','" + str(datenow) + "','" + str(datenow) + "'," + str(
             usuario_codigo) + ",'','CORREO'  ) ")
-        print "\033[94m######################### SQL INSERT DIGITALIZADO #################################\033[0m"
-        print "\033[94m" + insertar_documento + "\033[0m"
+        print("\033[94m######################### SQL INSERT DIGITALIZADO #################################\033[0m")
+        print("\033[94m" + insertar_documento + "\033[0m")
         try:
             self.cursor.execute(insertar_documento)
             self.conexion.commit()
