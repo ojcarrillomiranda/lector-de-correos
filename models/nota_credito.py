@@ -3,7 +3,6 @@
 from configparser import ConfigParser
 import imaplib, email
 from email.header import decode_header
-import HTMLParser
 import os
 import psycopg2
 import psycopg2.extras
@@ -12,7 +11,7 @@ psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
 import datetime, re
 import email
-from email.MIMEText import MIMEText
+from email.mime.text import MIMEText
 from models.reg import reg
 from common.funciones import Funcion
 
@@ -21,15 +20,14 @@ ano = 0
 mes = 0
 dia = 0
 
-parser = HTMLParser.HTMLParser()
 datenow = datetime.datetime.now()
 hournow = str(datenow.hour) + ":" + str(datenow.minute) + ":" + str(datenow.second)
 
 config = ConfigParser()
 config.read('config/config.ini')
-correo = config.get('conf','CORREO_O')
-password =  config.get('conf','PASS')
-carpeta = config.get('conf','IMAP_NC')
+correo = config.get('personal','CORREO_O')
+password =  config.get('personal','PASS')
+carpeta = config.get('carga_fe','IMAP_NC')
 cargue_string = config.get('correo_confirmacion','CARGUE_NOTA_CREDITO')
 error_string = config.get('correo_error','ERROR_NOTA_CREDITO')
 
@@ -54,14 +52,14 @@ class NotaCredito:
                 empresa = valida_asunto["empresa"]
                 if valida_asunto is False:
                     mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento soporte), se envía correo y se detiene el proceso\033[0m"
-                    print mensaje
+                    print(mensaje)
                     break
                 datos_nota_credito = self.get_datos_nota_credito(cursor, empresa_codigo, cod_doc_asunto, empresa)
                 nota_credito = datos_nota_credito["codigo_nota"]
                 ruta = datos_nota_credito["digitalizado_ruta"]
                 if datos_nota_credito is False:
                     mensaje = "\033[91No se lograron obtener datos de la " + cambio.upper() + "\033[0m"
-                    print mensaje
+                    print(mensaje)
                     break
                 insert_digi = Funcion(cursor, conexion, enviar).insertar_digitalizado(129, 135, nota_credito, ruta, filename, cargue_string, error_string)
                 if insert_digi:
@@ -79,7 +77,7 @@ class NotaCredito:
             empresa_codigo) + "' AND notcon_cencoscodigo = '" + str(cencos_codigo) + "'"
         mensaje = "\033[94mConsulta de la nota credito Empresa " + str(empresa_codigo) + " DigCCResolucion " + str(cencos_codigo) + " ejecutada con éxito\033[0m"
         try:
-            print "\033[94m######################### SQL get_datos() #################################\033[0m"
+            print("\033[94m######################### SQL get_datos() #################################\033[0m")
             print ("\033[94m" + nota_credito_sql) + "\033[0m"
             cursor.execute(nota_credito_sql)
             print (mensaje)
@@ -96,9 +94,9 @@ class NotaCredito:
                 digitalizado_ruta = '/usr/local/apache/htdocs/switrans/images/facturas/' + str(empresa) + '/' + str(
                     ano) + '/' + str(cencos_nota) + '/' + str(mes) + '/'
                 ContAux = ContAux + 1
-                print "\033[92m######################### RESULTADO SQL get_datos() #################################\033[0m\n" + "\033[92mnotcon_codigo = " + str(
+                print("\033[92m######################### RESULTADO SQL get_datos() #################################\033[0m\n" + "\033[92mnotcon_codigo = " + str(
                     codigo_nota) + "\n" + "cencos_codigo = " + str(
-                    cencos_nota) + "\n" + "notcon_fechacreacion = " + fecha_nota_credito + "\033[0m\n"
+                    cencos_nota) + "\n" + "notcon_fechacreacion = " + fecha_nota_credito + "\033[0m\n")
             if ContAux > 0:
                 datos_nota_credito = {
                     "codigo_nota": codigo_nota,
@@ -119,10 +117,10 @@ class NotaCredito:
             cursor.execute(update_nota_credito)
             conexion.commit()
             mensaje = "\033[93mNota Credito Actualizada a base de datos tb_notacontabilidad, campo: archivo_facturacionelectronica \n._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._\033[0m"
-            print mensaje
+            print(mensaje)
         except psycopg2.Error as e:
             mensaje = e.pgerror
-            print mensaje
+            print(mensaje)
             print("ERROR FATAL EN LA CONSULTA " + str(update_nota_credito))
             errorFile = 1
 

@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import datetime
+import psycopg2
 import psycopg2.extras
 import psycopg2.extensions
 psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
@@ -21,10 +22,10 @@ class Conexion(object):
         config.read('config/config.ini')
         try:
             conexion = psycopg2.connect(
-                    host = config.get('conf', 'HOST'),
-                    dbname = config.get('conf', 'DB_NAME'),
-                    user = config.get('conf', 'USER'),
-                    password = config.get('conf', 'PASSWORD')
+                    host = config.get('db', 'HOST'),
+                    dbname = config.get('db', 'DB_NAME'),
+                    user = config.get('db', 'USER'),
+                    password = config.get('db', 'PASSWORD')
                 )
             print("\033[092m#######################################\033[0m\n\033[092m# conexion a DB establecida con exito #" + "\n      " + str(datenow) + " \033[0m\n\033[092m#######################################\033[0m\n")
             return conexion

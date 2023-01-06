@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b9579ad-0f06-446f-9d0a-c6bf6b4813b4" name="Changes" comment=".ini">
+    <list default="true" id="0b9579ad-0f06-446f-9d0a-c6bf6b4813b4" name="Changes" comment="ultimo">
       <change beforePath="$PROJECT_DIR$/.idea/LectorCorreosPython.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LectorCorreosPython.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/funciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/funciones.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/controlador.py" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/controlador.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conexiones/ConexionDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexiones/ConexionDB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conexiones/EnviarCorreo.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexiones/EnviarCorreo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/documento_soporte.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/documento_soporte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/factura.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/factura.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/nota_ajuste.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/nota_ajuste.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/nota_credito.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/nota_credito.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/nota_debito.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/nota_debito.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,19 +26,32 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="63e550d4-f79b-46a1-ae19-6f0b2791998b" />
+        <option name="url" value="https://github.com/ojcarrillomiranda/lector-de-correos.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/common/funciones.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/conexiones/ConexionDB.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/conexiones/EnviarCorreo.py" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/conexiones/EnviarCorreo.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/config/config.ini" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/controllers/controlador.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/main.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/models/Reg.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/models/documento_soporte.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/models/factura.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/models/nota_ajuste.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/models/nota_credito.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/models/nota_debito.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/models/reg.py" root0="SKIP_INSPECTION" />
     <setting file="file://$USER_HOME$/anaconda3/envs/pruebaslector/lib/python2.7/site-packages/backports/configparser/__init__.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -49,7 +69,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "/home/orlin/Documentos/Pruebas_python/LectorCorreosPython",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.editor"
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors"
   }
 }]]></component>
   <component name="RunManager" selected="Python.main">
@@ -168,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672784527583</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="ultimo">
+      <created>1673022200358</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673022200358</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,7 +214,8 @@
     <MESSAGE value="lector correos terminado" />
     <MESSAGE value="ajustes" />
     <MESSAGE value=".ini" />
-    <option name="LAST_COMMIT_MESSAGE" value=".ini" />
+    <MESSAGE value="ultimo" />
+    <option name="LAST_COMMIT_MESSAGE" value="ultimo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

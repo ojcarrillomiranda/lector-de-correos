@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import imaplib, email
 from email.header import decode_header
-import HTMLParser
 import os
 import psycopg2
 import psycopg2.extras
@@ -12,7 +11,7 @@ psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
 import datetime, re
 from configparser import ConfigParser
 import email
-from email.MIMEText import MIMEText
+from email.mime.text import MIMEText
 from models.reg import reg
 from common.funciones import Funcion
 
@@ -22,18 +21,16 @@ mes = 0
 dia = 0
 Msg = None
 
-parser = HTMLParser.HTMLParser()
 datenow = datetime.datetime.now()
 hournow = str(datenow.hour) + ":" + str(datenow.minute) + ":" + str(datenow.second)
 
 config = ConfigParser()
 config.read('config/config.ini')
-correo = config.get('conf','CORREO_O')
-password =  config.get('conf','PASS')
-carpeta = config.get('conf','IMAP_FAC')
+correo = config.get('personal','CORREO_O')
+password =  config.get('personal','PASS')
+carpeta = config.get('carga_fe','IMAP_FAC')
 cargue_string = config.get('correo_confirmacion','CARGUE_FACTURA')
 error_string = config.get('correo_error','ERROR_FACTURA')
-
 
 class Factura:
     def leer_correos_factura(self, con, env):
@@ -55,14 +52,14 @@ class Factura:
                 empresa = valida_asunto["empresa"]
                 if valida_asunto is False:
                     mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento soporte), se envía correo y se detiene el proceso\033[0m"
-                    print mensaje
+                    print(mensaje)
                     break
                 datos_factura = self.get_datos_factura(cursor, cencos_codigo, documento, empresa)
                 factura = datos_factura["codigo_factura"]
                 ruta = datos_factura["digitalizado_ruta"]
                 if datos_factura is False:
                     mensaje = "\033[91No se lograron obtener datos de la " + cambio.upper() + "\033[0m"
-                    print mensaje
+                    print(mensaje)
                     break
                 insert_digi = Funcion(cursor, conexion, enviar).insertar_digitalizado(120, 122, factura, ruta, filename, cargue_string, error_string)
                 if insert_digi:
@@ -79,7 +76,7 @@ class Factura:
         facturas_sql = "Select factura_codigo, cencos_codigo, factura_fechacreacion from tb_factura where cencos_codigo = '" + str(cencos_codigo) + "' AND factura_numerodocumento = '" + str(documento) + "'"
         mensaje = "\033[94mConsulta de la Factura CC " + str(cencos_codigo) + " DigCCResolucion " + str(documento) + " ejecutada con éxito\033[0m"
         try:
-            print "\033[94m######################### SQL get_datos() #################################\033[0m"
+            print("\033[94m######################### SQL get_datos() #################################\033[0m")
             print ("\033[94m" + facturas_sql + "\033[0m")
             cursor.execute(facturas_sql)
             print (mensaje)
@@ -95,7 +92,7 @@ class Factura:
                 dia = fecha_factura.split("-")[2]
                 digitalizado_ruta = '/usr/local/apache/htdocs/switrans/images/facturas/' + str(empresa) + '/' + str(ano) + '/' + str(cencos_factura) + '/' + str(mes) + '/'
                 ContAux = ContAux + 1
-                print "\033[92m######################### RESULTADO SQL get_datos() #################################\033[0m\n" + "\033[92mcodigo_factura = " + str(codigo_factura) + "\n" + "cencos_codigo = " + str(cencos_factura) +"\n"+ "factura_fechacreacion = " + fecha_factura + "\033[0m\n"
+                print("\033[92m######################### RESULTADO SQL get_datos() #################################\033[0m\n" + "\033[92mcodigo_factura = " + str(codigo_factura) + "\n" + "cencos_codigo = " + str(cencos_factura) +"\n"+ "factura_fechacreacion = " + fecha_factura + "\033[0m\n")
             if ContAux > 0:
                 datos_factura = {
                     "codigo_factura":codigo_factura,

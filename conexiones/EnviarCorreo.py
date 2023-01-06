@@ -8,10 +8,10 @@ from smtplib import SMTP
 
 config = ConfigParser()
 config.read('config/config.ini')
-host = config.get('conf', 'SMTP_HOST')
-puerto = config.getint('conf', 'SMTP_PORT')
-correo = config.get('conf', 'SMTP_CORREO')
-password = config.get('conf', 'SMTP_PASSWORD')
+host = config.get('enviar_correo', 'SMTP_HOST')
+puerto = config.getint('enviar_correo', 'SMTP_PORT')
+correo = config.get('enviar_correo', 'SMTP_CORREO')
+password = config.get('enviar_correo', 'SMTP_PASSWORD')
 
 class EnviarCorreo(object):
     __instancia = None
@@ -33,7 +33,7 @@ class EnviarCorreo(object):
         self.enviar_correo("notificaciones@mct.com.co",str(email_from),mensaje.as_string())
         carpeta = re.sub("El|cargue|de|la|del|:","",cargue)
         mensaje = "\033[92mSe envia correo de confirmación de cargue" + str(carpeta.upper()) + " satisfactorio a:\033[0m " + email_from + "\n"
-        print mensaje
+        print(mensaje)
 
     def correo_error(self, factura, filename, msg, cargue, error, email_from, email_message):
         c = "orlin.carrillo@mct.com.co"
@@ -45,8 +45,8 @@ class EnviarCorreo(object):
             # ["facturacion@mct.com.co", "logs.switrans@mct.com.co", "erney.vargas@mct.com.co"],
         carpeta = re.sub("Error|:","",error)
         mensaje = "\033[92mSe envia correo de ERROR de cargue" + carpeta.upper() + " a:\033[0m " + c
-        print mensaje
-        print "\033[92m._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._\033[0m\n"
+        print(mensaje)
+        print("\033[92m._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._\033[0m\n")
 
     def enviar_correo(self, from_addr, to_addrs, msg):
         self.smtp.sendmail(from_addr, to_addrs, msg)

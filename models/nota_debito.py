@@ -6,7 +6,6 @@ from email.header import decode_header
 import smtplib
 from common.funciones import Funcion
 from conexiones.EnviarCorreo import EnviarCorreo
-import HTMLParser
 import os, sys
 import psycopg2
 import psycopg2.extras
@@ -19,11 +18,10 @@ psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
 import time, math, array
 from glob import glob
 import datetime, re
-from PIL import Image
 
 from smtplib import SMTP  # this invokes the secure SMTP protocol (port 465, uses SSL)
 import email
-from email.MIMEText import MIMEText
+from email.mime.text import MIMEText
 
 # Fecha y hora actual
 dateNow = datetime.datetime.now()
@@ -42,15 +40,14 @@ empresa_codigo_general_nota_debito = {
 }
 
 
-parser = HTMLParser.HTMLParser()
 datenow = datetime.datetime.now()
 hournow = str(datenow.hour) + ":" + str(datenow.minute) + ":" + str(datenow.second)
 
 config = ConfigParser()
 config.read('config/config.ini')
-correo = config.get('conf','CORREO_O')
-password =  config.get('conf','PASS')
-carpeta = config.get('conf','IMAP_ND')
+correo = config.get('personal','CORREO_O')
+password =  config.get('personal','PASS')
+carpeta = config.get('carga_fe','IMAP_ND')
 cargue_string = config.get('correo_confirmacion','CARGUE_NOTA_DEBITO')
 error_string = config.get('correo_error','ERROR_NOTA_DEBITO')
 
@@ -75,14 +72,14 @@ class NotaDebito:
                 codigo_empresa = empresa_codigo_general_nota_debito[empresa_codigo_contable]
                 if valida_asunto is False:
                     mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento soporte), se envía correo y se detiene el proceso\033[0m"
-                    print mensaje
+                    print (mensaje)
                     break
                 datos_nota_debito = self.get_datos_nota_debito(cursor, codigo_empresa, consecutivo, empresa)
                 nota_debito = datos_nota_debito["codigo_nota_debito"]
                 ruta = datos_nota_debito["digitalizado_ruta"]
                 if datos_nota_debito is False:
                     mensaje = "\033[91No se lograron obtener datos de la " + cambio.upper() + "\033[0m"
-                    print mensaje
+                    print (mensaje)
                     break
                 insert_digi = Funcion(cursor, conexion, enviar).insertar_digitalizado(256, 140, nota_debito, ruta, filename, cargue_string, error_string)
                 if insert_digi:
@@ -102,7 +99,7 @@ class NotaDebito:
         nota_debito_sql = "SELECT notadebito_codigo, nd.cencos_codigo, nd.notadebito_fechacreacion FROM tb_notadebito nd LEFT JOIN tb_centrocosto cc ON nd.cencos_codigo = cc.cencos_codigo WHERE cc.empresa_codigo = " + str(empresa_codigo) + " AND nd.notadebito_cencoscodigo = " + str(consecutivo)
         mensaje = "\033[94mConsulta de la nota debito para la empresa " + str(empresa_codigo) + " ccNotaDebito " + str(consecutivo) + " ejecutada con exito\033[0m"
         try:
-            print "\033[94m######################### SQL get_datos() #################################\033[0m"
+            print("\033[94m######################### SQL get_datos() #################################\033[0m")
             print ("\033[94m" + nota_debito_sql) + "\033[0m"
             cursor.execute(nota_debito_sql)
             print (mensaje)
@@ -119,7 +116,7 @@ class NotaDebito:
                 digitalizado_ruta = '/usr/local/apache/htdocs/switrans/images/facturas/' + str(empresa) + '/' + str(ano) + '/' + str(
                     cencos_nota_debito) + '/' + str(mes) + '/'
                 ContAux = ContAux + 1
-                print "\033[92m######################### RESULTADO SQL get_datos() #################################\033[0m\n" + "\033[92mnotadebito_codigo = " + str(
+                print"\033[92m######################### RESULTADO SQL get_datos() #################################\033[0m\n" + "\033[92mnotadebito_codigo = " + str(
                     codigo_nota_debito) + "\n" + "cencos_codigo = " + str(cencos_nota_debito) + "\n" + "notadebito_fechacreacion = " + fecha_nota_debito + "\033[0m\n"
             if ContAux > 0:
                 datos_nota_credito = {

@@ -3,7 +3,6 @@
 from configparser import ConfigParser
 import imaplib, email
 from email.header import decode_header
-import HTMLParser
 import os
 import psycopg2
 import psycopg2.extras
@@ -14,7 +13,7 @@ psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 psycopg2.extensions.register_type(psycopg2.extensions.UNICODEARRAY)
 import datetime, re
 import email
-from email.MIMEText import MIMEText
+from email.mime.text import MIMEText
 from models.reg import reg
 
 datenow = datetime.datetime.now()
@@ -25,15 +24,14 @@ ano = 0
 mes = 0
 dia = 0
 
-parser = HTMLParser.HTMLParser()
 datenow = datetime.datetime.now()
 hournow = str(datenow.hour) + ":" + str(datenow.minute) + ":" + str(datenow.second)
 
 config = ConfigParser()
 config.read('config/config.ini')
-correo = config.get('conf','CORREO_O')
-password =  config.get('conf','PASS')
-carpeta = config.get('conf','IMAP_DS')
+correo = config.get('personal','CORREO_O')
+password =  config.get('personal','PASS')
+carpeta = config.get('doc_soporte','IMAP_DS')
 cargue_string = config.get('correo_confirmacion','CARGUE_DOC_SOPORTE')
 error_string = config.get('correo_error','ERROR_DOC_SOPORTE')
 
@@ -60,14 +58,14 @@ class DocumentoSoporte:
                 empresa = valida_asunto["empresa"]
                 if valida_asunto is False:
                     mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento soporte), se envía correo y se detiene el proceso\033[0m"
-                    print mensaje
+                    print(mensaje)
                     break
                 datos_doc_soporte = self.get_datos_doc_soporte(cursor, empresa_codigo, documento_soporte, cencos_documento, empresa)
                 doc_soporte = datos_doc_soporte["codigo_docsop"]
                 ruta = datos_doc_soporte["digitalizado_ruta"]
                 if datos_doc_soporte is False:
                     mensaje = "\033[91No se lograron obtener datos de la " + cambio.upper() + "\033[0m"
-                    print mensaje
+                    print(mensaje)
                     break
                 insert_digi = Funcion(cursor, conexion, enviar).insertar_digitalizado(299, 141, doc_soporte, ruta, filename, cargue_string, error_string)
                 if insert_digi:
@@ -84,7 +82,7 @@ class DocumentoSoporte:
         doc_soporte_sql = "SELECT ds.docsop_codigo as docsop_codigo, ds.cencos_codigo, ds.docsop_fechacreacion AS docsop_fechacreacion FROM tb_documentosoporte ds INNER JOIN tb_itemresoluciondocumentosoporte irds ON irds.itresoldocsop_codigo = ds.itresoldocsop_codigo WHERE ds.empresa_codigo = " + str(empresa_codigo) + " AND ds.cencos_codigo = " + str(cencos_documento) + " AND irds.itresoldocsop_numero = " + str(documento_soporte)
         mensaje = "\033[94mConsulta del Documento Soporte Empresa " + str(empresa_codigo) + " DigCCResolucion " + str(documento_soporte) + " ejecutada con éxito\033[0m"
         try:
-            print "\033[94m######################### SQL get_datos() #################################\033[0m"
+            print("\033[94m######################### SQL get_datos() #################################\033[0m")
             print ("\033[94m" + doc_soporte_sql + "\033[0m")
             cursor.execute(doc_soporte_sql)
             print (mensaje)
@@ -101,8 +99,8 @@ class DocumentoSoporte:
                 digitalizado_ruta = '/usr/local/apache/htdocs/switrans/images/documentosoporte/' + str(empresa) + '/' + str(
                     ano) + '/' + str(cencos_docsop) + '/' + str(mes) + '/'
                 ContAux = ContAux + 1
-                print "\033[92m######################### RESULTADO SQL get_datos() #################################\033[0m\n" + "\033[92mdocsop_codigo = " + str(
-                    codigo_docsop) + "\n" + "cencos_codigo = " + str(cencos_docsop) + "\n" + "docsop_fechacreacion = " + fecha_docsop + "\033[0m\n"
+                print("\033[92m######################### RESULTADO SQL get_datos() #################################\033[0m\n" + "\033[92mdocsop_codigo = " + str(
+                    codigo_docsop) + "\n" + "cencos_codigo = " + str(cencos_docsop) + "\n" + "docsop_fechacreacion = " + fecha_docsop + "\033[0m\n")
             if ContAux > 0:
                 datos_doc_soporte = {
                     "codigo_docsop": codigo_docsop,
@@ -123,10 +121,10 @@ class DocumentoSoporte:
             cursor.execute(update_doc_soporte)
             conexion.commit()
             mensaje = "\033[93mDocumento Soporte Actualizada a base de datos tb_documentosoporte, campo: archivo_documentosoportelectronico \n._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._\033[0m"
-            print mensaje
+            print (mensaje)
         except psycopg2.Error as e:
             mensaje = e.pgerror
-            print mensaje
+            print (mensaje)
             print("ERROR FATAL EN LA CONSULTA " + str(update_doc_soporte))
             errorFile = 1
 

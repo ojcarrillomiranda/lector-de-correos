@@ -4,7 +4,6 @@ import email
 import imaplib
 import os
 from email.header import decode_header
-import HTMLParser
 import psycopg2
 import psycopg2.extensions
 import psycopg2.extras
@@ -14,10 +13,8 @@ import datetime
 import email
 import re
 from configparser import ConfigParser
-from email.MIMEText import MIMEText
+from email.mime.text import MIMEText
 
-# from controllers.Controlador import Controlador
-# from models import nota_credito
 from models.reg import reg
 
 empresa = ""
@@ -52,14 +49,13 @@ empresa_codigo_general = {
   "MARKETING": "2"
 }
 
-parser = HTMLParser.HTMLParser()
 datenow = datetime.datetime.now()
 hournow = str(datenow.hour) + ":" + str(datenow.minute) + ":" + str(datenow.second)
 
 config = ConfigParser()
 config.read('config/config.ini')
-host = config.get('conf','IMAP_HOST')
-clave =  config.getint('conf','IMAP_PORT')
+host = config.get('leer_correo','IMAP_HOST')
+clave =  config.getint('leer_correo','IMAP_PORT')
 
 class Funcion:
 
