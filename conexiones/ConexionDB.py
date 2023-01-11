@@ -10,6 +10,12 @@ from configparser import ConfigParser
 
 datenow = datetime.datetime.now()
 hournow = str(datenow.hour) + ":" + str(datenow.minute) + ":" + str(datenow.second)
+config = ConfigParser()
+config.read('config/config.ini')
+host = config.get('db', 'HOST')
+dbname = config.get('db', 'DB_NAME')
+user = config.get('db', 'USER')
+password = config.get('db', 'PASSWORD')
 
 class Conexion(object):
     __instancia = None
@@ -18,14 +24,12 @@ class Conexion(object):
             Conexion.__instancia = object.__new__(cls)
         return Conexion.__instancia
     def conexion(self):
-        config = ConfigParser()
-        config.read('config/config.ini')
         try:
             conexion = psycopg2.connect(
-                    host = config.get('db', 'HOST'),
-                    dbname = config.get('db', 'DB_NAME'),
-                    user = config.get('db', 'USER'),
-                    password = config.get('db', 'PASSWORD')
+                    host = host ,
+                    dbname = dbname,
+                    user = user,
+                    password = password
                 )
             print("\033[092m#######################################\033[0m\n\033[092m# conexion a DB establecida con exito #" + "\n      " + str(datenow) + " \033[0m\n\033[092m#######################################\033[0m\n")
             return conexion

@@ -7,13 +7,18 @@ import datetime
 import re
 from email.header import decode_header
 from configparser import ConfigParser
+from email.mime.text import MIMEText
 
 from models.reg import reg
 
 empresa = ""
 
-# email_from = "facturacion@mct.com.co"
-email_from = "orlin.carrillo@mct.com.co"
+config = ConfigParser()
+config.read('config/config.ini')
+host = config.get('leer_correo','IMAP_HOST')
+clave =  config.getint('leer_correo','IMAP_PORT')
+email_from = config.get('personal','CORREO_O')
+# email_from = config.get('enviar_correo','EMAIL_FROM')
 counter = 0
 counteraux = 1
 imagdoc_codigo = 0
@@ -44,11 +49,6 @@ empresa_codigo_general = {
 
 datenow = datetime.datetime.now()
 hournow = str(datenow.hour) + ":" + str(datenow.minute) + ":" + str(datenow.second)
-
-config = ConfigParser()
-config.read('config/config.ini')
-host = config.get('leer_correo','IMAP_HOST')
-clave =  config.getint('leer_correo','IMAP_PORT')
 
 class Funcion:
 

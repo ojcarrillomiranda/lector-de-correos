@@ -38,11 +38,13 @@ class NotaCredito:
                 asunto = dato["asunto"]
                 filename = dato["filename"]
                 valida_asunto = Funcion(cursor, conexion, enviar).validar_asunto_correo("C", asunto)
-                cod_doc_asunto = valida_asunto["cod_doc_asunto"]
-                empresa_codigo = valida_asunto["empresa_codigo"]
-                empresa = valida_asunto["empresa"]
+                if valida_asunto != False:
+                    cod_doc_asunto = valida_asunto["cod_doc_asunto"]
+                    empresa_codigo = valida_asunto["empresa_codigo"]
+                    empresa = valida_asunto["empresa"]
                 if valida_asunto is False:
-                    mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento soporte), se envía correo y se detiene el proceso\033[0m"
+                    mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento " \
+                              "soporte), se envía correo y se detiene el proceso\033[0m\n"
                     print(mensaje)
                     break
                 datos_nota_credito = self.get_datos_nota_credito(cursor, empresa_codigo, cod_doc_asunto, empresa)

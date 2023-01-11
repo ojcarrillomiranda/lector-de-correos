@@ -36,13 +36,14 @@ class NotaAjuste:
             for dato in data_correos:
                 asunto = dato["asunto"]
                 filename = dato["filename"]
-
                 valida_asunto = Funcion(cursor, conexion, enviar).validar_asunto_correo("N", asunto)
-                empresa_codigo = valida_asunto["empresa_codigo"]
-                documento = valida_asunto["cod_doc_asunto"]
-                empresa = valida_asunto["empresa"]
+                if valida_asunto != False:
+                    empresa_codigo = valida_asunto["empresa_codigo"]
+                    documento = valida_asunto["cod_doc_asunto"]
+                    empresa = valida_asunto["empresa"]
                 if valida_asunto is False:
-                    mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento soporte), se envía correo y se detiene el proceso\033[0m"
+                    mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento " \
+                              "soporte), se envía correo y se detiene el proceso\033[0m\n"
                     print(mensaje)
                     break
                 datos_nota_ajuste = self.get_datos_nota_ajuste(cursor, empresa_codigo, documento, empresa)

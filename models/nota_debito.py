@@ -48,12 +48,14 @@ class NotaDebito:
                 asunto = dato["asunto"]
                 filename = dato["filename"]
                 valida_asunto = Funcion(cursor, conexion, enviar).validar_asunto_correo("ND", asunto)
-                empresa_codigo_contable = valida_asunto["empresa_codigo_contable"]
-                consecutivo = valida_asunto["consecutivo"]
-                empresa = valida_asunto["empresa"]
-                codigo_empresa = empresa_codigo_general_nota_debito[empresa_codigo_contable]
+                if valida_asunto != False:
+                    empresa_codigo_contable = valida_asunto["empresa_codigo_contable"]
+                    consecutivo = valida_asunto["consecutivo"]
+                    empresa = valida_asunto["empresa"]
+                    codigo_empresa = empresa_codigo_general_nota_debito[empresa_codigo_contable]
                 if valida_asunto is False:
-                    mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento soporte), se envía correo y se detiene el proceso\033[0m"
+                    mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento " \
+                              "soporte), se envía correo y se detiene el proceso\033[0m\n"
                     print (mensaje)
                     break
                 datos_nota_debito = self.get_datos_nota_debito(cursor, codigo_empresa, consecutivo, empresa)

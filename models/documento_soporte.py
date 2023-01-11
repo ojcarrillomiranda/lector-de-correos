@@ -41,12 +41,14 @@ class DocumentoSoporte:
                 filename = dato["filename"]
 
                 valida_asunto = Funcion(cursor, conexion, enviar).validar_asunto_correo("D", asunto)
-                empresa_codigo = valida_asunto["empresa_codigo"]
-                documento_soporte = valida_asunto["cod_doc_asunto"]
-                cencos_documento = valida_asunto["cencos_doc_asunto"]
-                empresa = valida_asunto["empresa"]
+                if valida_asunto != False:
+                    empresa_codigo = valida_asunto["empresa_codigo"]
+                    documento_soporte = valida_asunto["cod_doc_asunto"]
+                    cencos_documento = valida_asunto["cencos_doc_asunto"]
+                    empresa = valida_asunto["empresa"]
                 if valida_asunto is False:
-                    mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento soporte), se envía correo y se detiene el proceso\033[0m"
+                    mensaje = "\033[91mEl Asunto no es correcto o esta mal formado (no tiene el numero de documento " \
+                              "soporte), se envía correo y se detiene el proceso\033[0m\n"
                     print(mensaje)
                     break
                 datos_doc_soporte = self.get_datos_doc_soporte(cursor, empresa_codigo, documento_soporte, cencos_documento, empresa)

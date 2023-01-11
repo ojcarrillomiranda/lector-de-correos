@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from configparser import ConfigParser
 from email.mime.text import MIMEText
-from fileinput import close
 import re
 from smtplib import SMTP
 
