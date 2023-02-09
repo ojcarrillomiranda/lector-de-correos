@@ -17,17 +17,18 @@ hournow = str(datenow.hour) + ":" + str(datenow.minute) + ":" + str(datenow.seco
 config = ConfigParser()
 config.read('config/config.ini')
 correo = config.get('personal','CORREO_O')
+# correo = config.get('enviar_correo','EMAIL_FROM_FACTURACION')
 password =  config.get('personal','PASS')
 carpeta = config.get('carga_fe','IMAP_FAC')
 cargue_string = config.get('correo_confirmacion','CARGUE_FACTURA')
 error_string = config.get('correo_error','ERROR_FACTURA')
+cambio = re.sub("_", " ", carpeta)
 
 class Factura:
     def leer_correos_factura(self, con, env):
         cursor = con.cursor()
         conexion = con
         enviar = env
-        cambio = re.sub("_", " ", carpeta)
 
         Funcion(cursor, conexion, enviar).get_datos_centro_costo()
         data_correos = Funcion(cursor, conexion, enviar).analizar_correo(correo, password, carpeta)
@@ -36,7 +37,7 @@ class Factura:
             for dato in data_correos:
                 asunto = dato["asunto"]
                 filename = dato["filename"]
-                valida_asunto = Funcion(cursor, conexion, enviar).validar_asunto_correo("E", asunto)
+                valida_asunto = Funcion(cursor, conexion, enviar).validar_asunto_correo("E", asunto, correo)
                 if valida_asunto != False:
                     cencos_codigo = valida_asunto["cencos_doc_asunto"]
                     documento =  valida_asunto["cod_doc_asunto"]
@@ -53,7 +54,9 @@ class Factura:
                     mensaje = "\033[91No se lograron obtener datos de la " + cambio.upper() + "\033[0m"
                     print(mensaje)
                     break
-                insert_digi = Funcion(cursor, conexion, enviar).insertar_digitalizado(120, 122, factura, ruta, filename, cargue_string, error_string)
+                insert_digi = Funcion(cursor, conexion, enviar).insertar_digitalizado(120, 122, factura, ruta,
+                                                                                      filename, cargue_string,
+                                                                                      error_string, correo)
                 if insert_digi:
                     archivo_zip = insert_digi
                     self.actualizar_factura(cursor, conexion, archivo_zip, factura)

@@ -5,6 +5,7 @@ import imaplib
 import os
 import datetime
 import re
+import psycopg2
 from email.header import decode_header
 from configparser import ConfigParser
 from email.mime.text import MIMEText
@@ -17,8 +18,8 @@ config = ConfigParser()
 config.read('config/config.ini')
 host = config.get('leer_correo','IMAP_HOST')
 clave =  config.getint('leer_correo','IMAP_PORT')
-email_from = config.get('personal','CORREO_O')
-# email_from = config.get('enviar_correo','EMAIL_FROM')
+email_notificaciones = config.get('enviar_correo','SMTP_CORREO')
+
 counter = 0
 counteraux = 1
 imagdoc_codigo = 0
@@ -77,7 +78,7 @@ class Funcion:
             stPrefCCReverse = str(r.empresa_codigocontable) + str(stDigCC)
             dicc_reverse_cencos[stPrefCCReverse] = r.cencos_codigo
 
-    def validar_asunto_correo(self, letra, asunto):
+    def validar_asunto_correo(self, letra, asunto, email_from):
         global doc_asunto, cencos_doc_asunto, cod_doc_asunto, imagdoc_codigo, empresa,empresa_codigo,codigo_empresa,consecutivo
         Subj = str(asunto.upper())  # se pasa todo a MAYUSCULAS
         m = re.search('('+letra+'[0-9]*)[;]', Subj)
@@ -103,10 +104,10 @@ class Funcion:
                                \nTenga en cuenta que debe tener uno de los siguientes formatos, cambiando el numero de remesa correspondiente:\n"""
                                +letra+"""061 01\n
                             \nCordialmente,\n\n\nSistemas MCT. """)
-            mensaje['From'] = "notificaciones@mct.com.co"
+            mensaje['From'] = email_notificaciones
             mensaje['To'] = str(email_from)
             mensaje['Subject'] = "ERROR " + str(email_message['Subject'])
-            self.enviar.enviar_correo("notificaciones@mct.com.co", str(email_from), mensaje.as_string())
+            self.enviar.enviar_correo(email_notificaciones, str(email_from), mensaje.as_string())
             return False
         #si el centro de costo es correcto o viene una nota debito
         if (cencos_doc_asunto and cod_doc_asunto and len(cencos_doc_asunto) == 5) or letra == "ND":
@@ -127,14 +128,15 @@ class Funcion:
                                + str(email_message['Subject']) +
                                """
                                \nCordialmente,\n\n\nSistemas MCT. """)
-            mensaje['From'] = "notificaciones@mct.com.co"
+            mensaje['From'] = email_notificaciones
             mensaje['To'] = str(email_from)
             mensaje['Subject'] = "ERROR " + str(email_message['Subject'])
-            self.enviar.enviar_correo("notificaciones@mct.com.co", str(email_from), mensaje.as_string())
+            self.enviar.enviar_correo(email_notificaciones, str(email_from), mensaje.as_string())
             return False
 
 
-    def insertar_digitalizado(self, modulo, imagdoc_codigo, documento, ruta, filename, cargue_string, error_string):
+    def insertar_digitalizado(self, modulo, imagdoc_codigo, documento, ruta, filename, cargue_string, error_string,
+                              email_from):
         global counter,errorFile
         usuario_codigo = 1
         errorFile = None
